@@ -1,0 +1,23 @@
+{
+    "name": "asdf-studio/yii2-blog-module",
+    "description": "Blog module for Yii2 framework",
+    "license": "BSD",
+    "homepage": "http://asdf-studio.net/docs/yii2-blog-module",
+    "type": "yii2-extension",
+    "authors": [
+        {
+            "name": "Pavel Kilin",
+            "email": "pavel@asdf404.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "asdf-studio/yii2-admin-module": "*",
+        "asdf-studio/yii2-block": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "asdfstudio\\blog\\": ""
+        }
+    }
+}
