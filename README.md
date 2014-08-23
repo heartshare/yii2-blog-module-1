@@ -37,7 +37,7 @@ class Module extends \asdfstudio\blog\Module
 }
 ```
 
-Then add module too your config file:
+Then add module to your config file:
 
 ```php
 return [
