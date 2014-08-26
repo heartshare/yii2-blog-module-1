@@ -94,6 +94,7 @@ class Post extends Model
         }
         $this->status = self::STATUS_PUBLISHED;
         $this->published_at = time();
+        return $this;
     }
 
     public static function findOneBySlug($slug)

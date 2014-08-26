@@ -59,8 +59,8 @@ class Module extends \yii\base\Module implements BootstrapInterface
      */
     public function registerAdmin($admin)
     {
-        $item = \asdfstudio\blog\admin\PostItem::className();
-        $admin->registerItem($item);
+        $item = \asdfstudio\blog\admin\PostEntity::className();
+        $admin->registerEntity($item);
 
         $category = $admin->sidebar->addCategory(Yii::t('blog', 'Blog'));
         $category->addItem($item);
