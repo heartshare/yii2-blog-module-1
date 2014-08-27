@@ -5,12 +5,14 @@ namespace asdfstudio\blog\admin;
 
 
 use asdfstudio\admin\forms\widgets\Button;
+use asdfstudio\admin\forms\widgets\Input;
+use asdfstudio\admin\forms\widgets\Select;
+use common\models\User;
 use Yii;
 use asdfstudio\admin\forms\Form;
 use asdfstudio\admin\base\Entity;
 use asdfstudio\blog\models\Post;
 use yii\base\Model;
-use yii\bootstrap\ActiveField;
 
 class PostEntity extends Entity
 {
@@ -70,20 +72,25 @@ class PostEntity extends Entity
                     'wrapper' => '<div class="col-md-8">{items}</div>',
                     'items' => [
                         [
-                            'class' => ActiveField::className(),
+                            'class' => Input::className(),
                             'attribute' => 'title',
                         ],
                         [
-                            'class' => ActiveField::className(),
+                            'class' => Input::className(),
                             'attribute' => 'slug',
                         ],
                         [
-                            'class' => ActiveField::className(),
+                            'class' => Select::className(),
                             'attribute' => 'status',
+                            'items' => [
+                                Post::STATUS_DRAFT => Yii::t('blog', 'Draft'), Post::STATUS_PUBLISHED => Yii::t('blog', 'Published')
+                            ],
                         ],
                         [
-                            'class' => ActiveField::className(),
+                            'class' => Select::className(),
                             'attribute' => 'owner',
+                            'labelAttribute' => 'username',
+                            'query' => User::find()->indexBy('id'),
                         ],
                     ]
                 ],
