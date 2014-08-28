@@ -49,6 +49,7 @@ class Post extends Model
             [['title', 'slug'], 'string', 'length' => [1, 255]],
             ['content', 'string'],
             [['created_at', 'updated_at', 'published_at', 'status', 'owner_id'], 'integer'],
+            [['owner'], 'safe'],
         ];
     }
 
@@ -85,6 +86,14 @@ class Post extends Model
     public function getOwner()
     {
         return $this->hasOne($this->getUserIdentityClassName(), ['id' => 'owner_id']);
+    }
+
+    /**
+     * @param integer $owner
+     */
+    public function setOwner($owner)
+    {
+        $this->owner_id = $owner;
     }
 
     public function publish()
