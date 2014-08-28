@@ -62,7 +62,7 @@ class PostEntity extends Entity
     /**
      * @inheritdoc
      */
-    public static function form($scenario = Model::SCENARIO_DEFAULT)
+    public function form($scenario = Model::SCENARIO_DEFAULT)
     {
         return [
             'class' => Form::className(),
