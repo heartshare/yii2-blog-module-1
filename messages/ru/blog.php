@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Publish' => 'Опубликовать',
+    'Save' => 'Сохранить',
     'Blog' => 'Блог',
     'Content' => 'Содержимое',
     'Created date' => 'Дата создания',
@@ -27,6 +27,7 @@ return [
     'Post' => 'Заметка',
     'Posted on {date, date} {date, time}' => 'Опуликовано {date, date} {date, time}',
     'Posts' => 'Заметки',
+    'Publish' => 'Опубликовать',
     'Published' => 'Опубликовано',
     'Published date' => 'Дата публикации',
     'Status' => 'Статус',

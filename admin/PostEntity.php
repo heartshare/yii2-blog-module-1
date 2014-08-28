@@ -69,7 +69,7 @@ class PostEntity extends Entity
             'renderSaveButton' => false,
             'fields' => [
                 [
-                    'wrapper' => '<div class="col-md-8">{items}</div>',
+                    'wrapper' => '<div class="col-md-10">{items}</div>',
                     'items' => [
                         [
                             'class' => Input::className(),
@@ -95,19 +95,28 @@ class PostEntity extends Entity
                     ]
                 ],
                 [
-                    'wrapper' => '<div class="col-md-4">{items}</div>',
+                    'wrapper' => '<div class="col-md-2">{items}</div>',
                     'items' => [
                         [
                             'id' => 'publish',
                             'class' => Button::className(),
                             'label' => Yii::t('blog', 'Publish'),
                             'options' => [
-                                'class' => 'btn btn-success'
+                                'class' => 'btn btn-success btn-block'
                             ],
                             'action' => function($model) {
                                 /* @var Post $model */
                                 $model->publish();
                             },
+                        ],
+                        [
+                            'id' => 'save',
+                            'class' => Button::className(),
+                            'label' => Yii::t('blog', 'Save'),
+                            'options' => [
+                                'class' => 'btn btn-success btn-block'
+                            ],
+                            'action' => 'save',
                         ],
                     ],
                 ],
