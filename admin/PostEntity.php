@@ -7,6 +7,7 @@ namespace asdfstudio\blog\admin;
 use asdfstudio\admin\forms\widgets\Button;
 use asdfstudio\admin\forms\widgets\Input;
 use asdfstudio\admin\forms\widgets\Select;
+use asdfstudio\admin\forms\widgets\Textarea;
 use common\models\User;
 use Yii;
 use asdfstudio\admin\forms\Form;
@@ -74,6 +75,10 @@ class PostEntity extends Entity
                         [
                             'class' => Input::className(),
                             'attribute' => 'title',
+                        ],
+                        [
+                            'class' => Textarea::className(),
+                            'attribute' => 'content',
                         ],
                         [
                             'class' => Input::className(),
