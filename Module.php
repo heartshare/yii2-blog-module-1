@@ -3,9 +3,13 @@
 
 namespace asdfstudio\blog;
 
+use asdfstudio\admin\base\Entity;
+use asdfstudio\blog\admin\PostEntity;
+use asdfstudio\blog\models\Post;
 use Yii;
 use yii\base\BootstrapInterface;
 use asdfstudio\admin\Module as AdminModule;
+use yii\base\Event;
 
 
 class Module extends \yii\base\Module implements BootstrapInterface
@@ -59,11 +63,29 @@ class Module extends \yii\base\Module implements BootstrapInterface
      */
     public function registerAdmin($admin)
     {
-        $item = \asdfstudio\blog\admin\PostEntity::className();
+        /* @var PostEntity $item */
+        $item = PostEntity::className();
         $admin->registerEntity($item);
 
         $category = $admin->sidebar->addCategory(Yii::t('blog', 'Blog'));
         $category->addItem($item);
+
+        $blog = $this;
+        $admin->on(Entity::EVENT_CREATE_SUCCESS, function(Event $event) use ($blog) {
+            if ($event->sender instanceof Post) {
+                $blog->trigger('post.create', $event);
+            }
+        });
+        $admin->on(Entity::EVENT_UPDATE_SUCCESS, function(Event $event) use ($blog) {
+            if ($event->sender instanceof Post) {
+                $blog->trigger('post.update', $event);
+            }
+        });
+        $admin->on(Entity::EVENT_DELETE_SUCCESS, function(Event $event) use ($blog) {
+            if ($event->sender instanceof Post) {
+                $blog->trigger('post.delete', $event);
+            }
+        });
     }
 
     /**
