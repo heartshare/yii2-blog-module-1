@@ -20,10 +20,15 @@ use yii\helpers\Html;
                             'owner' => $model->owner->username,
                         ])?>
                     </span>
+                    <?php echo Html::a(null, null, [
+                        'name' => 'comment-' . $model->id,
+                    ])?>
                     <?php echo Html::a('#' . $model->id, [
                         'post/view',
                         'id' => $model->post->slug,
-                        '#' => $model->id,
+                        '#' => 'comment-' . $model->id,
+                    ], [
+                        'class' => 'pull-right'
                     ])?>
                 </h5>
                 <br/>
