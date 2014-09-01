@@ -99,5 +99,10 @@ class Module extends \yii\base\Module implements BootstrapInterface
             'sourceLanguage' => 'en',
             'basePath' => '@vendor/asdf-studio/yii2-blog-module/messages',
         ];
+        $i18n->translations['plugins/comment'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'sourceLanguage' => 'en',
+            'basePath' => '@vendor/asdf-studio/comments-module/messages',
+        ];
     }
 }

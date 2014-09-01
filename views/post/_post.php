@@ -19,8 +19,6 @@ use yii\helpers\Html;
             ])?>
         </p>
 
-        <hr>
-
         <!-- Date/Time -->
         <p>
             <span class="glyphicon glyphicon-time"></span>

@@ -22,6 +22,7 @@ use yii\web\User;
  * @property int $updated_at
  * @property int $published_at
  * @property User $owner
+ * @property Comment $comments
  */
 class Post extends Model
 {
@@ -109,5 +110,12 @@ class Post extends Model
     public static function findOneBySlug($slug)
     {
         return static::findOne(['slug' => $slug]);
+    }
+
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['id' => 'comment_id'])
+            ->viaTable('blog_post_comment', ['post_id' => 'id'])
+            ->inverseOf('post');
     }
 }

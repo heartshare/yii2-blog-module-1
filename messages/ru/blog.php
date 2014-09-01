@@ -19,6 +19,7 @@
 return [
     'Save' => 'Сохранить',
     'Blog' => 'Блог',
+    'Comments' => 'Комментарии',
     'Content' => 'Содержимое',
     'Created date' => 'Дата создания',
     'Draft' => 'Черновик',
@@ -31,6 +32,7 @@ return [
     'Published' => 'Опубликовано',
     'Published date' => 'Дата публикации',
     'Status' => 'Статус',
+    'Submit' => 'Отправить',
     'Title' => 'Заголовок',
     'URL slug' => 'URL адрес',
     'Updated date' => 'Дата обновления',
