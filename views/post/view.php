@@ -34,6 +34,7 @@ use yii\widgets\ListView;
             'summary' => '',
             'itemView' => '_comment',
         ])?>
+        <?php if (!Yii::$app->user->isGuest):?>
         <hr/>
         <div class="blog-post-comment-form">
             <?php $form = ActiveForm::begin()?>
@@ -45,6 +46,7 @@ use yii\widgets\ListView;
             ])?>
             <?php ActiveForm::end()?>
         </div>
+        <?php endif?>
     </div>
     <div class="col-md-4">
         <?php echo Block::show('blog.sidebar')?>
