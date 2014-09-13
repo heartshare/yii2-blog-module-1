@@ -4,10 +4,13 @@
 namespace asdfstudio\blog\admin;
 
 
+use asdfstudio\admin\details\Detail;
 use asdfstudio\admin\forms\widgets\Button;
 use asdfstudio\admin\forms\widgets\Input;
 use asdfstudio\admin\forms\widgets\Select;
 use asdfstudio\admin\forms\widgets\Textarea;
+use asdfstudio\admin\grids\Grid;
+use asdfstudio\blog\admin\forms\PostForm;
 use common\models\User;
 use Yii;
 use asdfstudio\admin\forms\Form;
@@ -42,7 +45,7 @@ class PostEntity extends Entity
     /**
      * @inheritdoc
      */
-    public static function labels()
+    public function labels()
     {
         return [Yii::t('blog', 'Post'), Yii::t('blog', 'Posts')];
     }
@@ -50,12 +53,12 @@ class PostEntity extends Entity
     /**
      * @inheritdoc
      */
-    public static function slug()
+    public function slug()
     {
         return 'blog_post';
     }
 
-    public static function model()
+    public function model()
     {
         return Post::className();
     }
@@ -66,65 +69,60 @@ class PostEntity extends Entity
     public function form($scenario = Model::SCENARIO_DEFAULT)
     {
         return [
-            'class' => Form::className(),
-            'renderSaveButton' => false,
-            'fields' => [
+            'class' => PostForm::className(),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function grid()
+    {
+        return [
+            'class' => Grid::className(),
+            'columns' => [
+                'id',
+                'title',
+                'slug',
+                'content:raw',
                 [
-                    'wrapper' => '<div class="col-md-10">{items}</div>',
-                    'items' => [
-                        [
-                            'class' => Input::className(),
-                            'attribute' => 'title',
-                        ],
-                        [
-                            'class' => Textarea::className(),
-                            'attribute' => 'content',
-                        ],
-                        [
-                            'class' => Input::className(),
-                            'attribute' => 'slug',
-                        ],
-                        [
-                            'class' => Select::className(),
-                            'attribute' => 'status',
-                            'items' => [
-                                Post::STATUS_DRAFT => Yii::t('blog', 'Draft'), Post::STATUS_PUBLISHED => Yii::t('blog', 'Published')
-                            ],
-                        ],
-                        [
-                            'class' => Select::className(),
-                            'attribute' => 'owner',
-                            'labelAttribute' => 'username',
-                            'query' => User::find()->indexBy('id'),
-                        ],
-                    ]
+                    'attribute' => 'status',
+                    'format' => ['list', [
+                        Post::STATUS_DRAFT => Yii::t('blog', 'Draft'), Post::STATUS_PUBLISHED => Yii::t('blog', 'Published')
+                    ]],
                 ],
                 [
-                    'wrapper' => '<div class="col-md-2">{items}</div>',
-                    'items' => [
-                        [
-                            'id' => 'publish',
-                            'class' => Button::className(),
-                            'label' => Yii::t('blog', 'Publish'),
-                            'options' => [
-                                'class' => 'btn btn-success btn-block'
-                            ],
-                            'action' => function($model) {
-                                /* @var Post $model */
-                                $model->publish();
-                            },
-                        ],
-                        [
-                            'id' => 'save',
-                            'class' => Button::className(),
-                            'label' => Yii::t('blog', 'Save'),
-                            'options' => [
-                                'class' => 'btn btn-success btn-block'
-                            ],
-                            'action' => 'save',
-                        ],
-                    ],
+                    'attribute' => 'owner',
+                    'format' => ['model', ['labelAttribute' => 'username']],
                 ],
+                'published_at:date',
+            ],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function detail()
+    {
+        return [
+            'class' => Detail::className(),
+            'attributes' => [
+                'id',
+                'title',
+                'slug',
+                'content:raw',
+                [
+                    'attribute' => 'status',
+                    'format' => ['list', [
+                        Post::STATUS_DRAFT => Yii::t('blog', 'Draft'), Post::STATUS_PUBLISHED => Yii::t('blog', 'Published')
+                    ]],
+                ],
+                [
+                    'attribute' => 'owner',
+                    'format' => ['model', ['labelAttribute' => 'username']],
+                ],
+                'published_at:date',
             ],
         ];
     }
