@@ -42,7 +42,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-        $app->getUrlManager()->addRules([
+        $this->registerRoutes([
             $this->urlPrefix . ''                   => $this->id . '/post/index',
             $this->urlPrefix . '/<id:[\w\d-_]+>'    => $this->id . '/post/view',
         ]);
@@ -86,6 +86,15 @@ class Module extends \yii\base\Module implements BootstrapInterface
                 $blog->trigger('post.delete', $event);
             }
         });
+    }
+
+    /**
+     * Register admin module routes
+     * @param array $rules
+     */
+    public function registerRoutes($rules)
+    {
+        Yii::$app->getUrlManager()->addRules($rules);
     }
 
     /**
