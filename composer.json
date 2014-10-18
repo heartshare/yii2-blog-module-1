@@ -13,7 +13,7 @@
     "minimum-stability": "dev",
     "require": {
         "asdf-studio/yii2-block": "*",
-        "asdf-studio/comments-module": "*"
+        "asdf-studio/comments-module": "dev-develop"
     },
     "autoload": {
         "psr-4": {
